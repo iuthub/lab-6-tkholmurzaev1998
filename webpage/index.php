@@ -1,3 +1,15 @@
+<?php
+error_reporting(0);
+$name=$_REQUEST["name"];
+$email=$_REQUEST["email"];
+$username=$_REQUEST["username"];
+$isGet=$_SERVER["REQUEST_METHOD"]=="GET";
+$isPost=$_SERVER["REQUEST_METHOD"]=="POST";
+$isNameError = $isPost && !preg_match('/\w+\/i',$name);
+$isEmailError = $isPost && !preg_match('/^\w+@[a-z]+.[a-z]{1,3}/i',$email);
+$isUsernameError = $isPost && !preg_match('/^\w+/i',$username);
+$isFormError=$isNameError||$isEmailError||$isUsernameError;
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
